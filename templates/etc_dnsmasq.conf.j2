@@ -32,6 +32,13 @@ expand-hosts
 {% if dnsmasq_domain is defined %}
 domain={{ dnsmasq_domain }}
 {% endif %}
+
+{% if dnsmasq_addresses is defined %}
+{% for addr in dnsmasq_addresses %}
+address=/{{ addr.domain }}/{% if addr.ip is defined %}{{ addr.ip }}{% endif %}
+{% endfor %}
+{% endif %}
+
 {% if dnsmasq_dhcp_ranges is defined %}
 {% for range in dnsmasq_dhcp_ranges %}
 dhcp-range={{ range.start_addr }},{{ range.end_addr }},{{ range.lease_time }}

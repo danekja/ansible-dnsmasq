@@ -20,6 +20,7 @@ None of the variables below are required.
 | `dnsmasq_addn_hosts`       | -       | Set this to specify a custom host file that should be read in addition to `/etc/hosts`.                                                                   |
 | `dnsmasq_authoritative`    | `false` | When `true`, dnsmasq will function as an authoritative name server.                                                                                       |
 | `dnsmasq_bogus_priv`       | `true`  | When `true`, Dnsmasq will not forward addresses in the non-routed address spaces.                                                                         |
+| `dnsmasq_addresses`        | -       | Specify IP address to return for hosts in given domains, with keys `domain` and `ip` (optional). See below.             |
 | `dnsmasq_dhcp_hosts`       | -       | Array of hashes specifying IP address reservations for hosts, with keys `name` (optional), `mac` and `ip` for each reservation. See below.             |
 | `dnsmasq_dhcp_ranges`      | -       | Array of hashes specifying DHCP ranges (with keys `start_addr`, `end_addr`, and `lease_time`) for each address pool. This also enables DHCP. See below. |
 | `dnsmasq_domain_needed`    | `true`  | When `true`, local requests (i.e. without domain name) are not forwarded.                                                                                 |
@@ -43,6 +44,14 @@ One or more upstream DNS servers can can be specified with the variable `dnsmasq
     dnsmasq_upstream_servers:
       - 8.8.4.4
       - 8.8.8.8
+```
+
+One or more domains can be mapped to specific IP address (IPv4 or IPv6). See `address` in [dnsmasq(8)](http://linux.die.net/man/8/dnsmasq for details.
+
+```Yaml
+    dnsmasq_addresses:
+      domain: "mydomain.org"
+      ip: "127.0.0.1"
 ```
 
 SRV records (see [dnsmasq(8)](http://linux.die.net/man/8/dnsmasq) or [RFC 2782](https://www.ietf.org/rfc/rfc2782.txt)) can be specified with `dnsmasq_srv_hosts`, e.g.:
