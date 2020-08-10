@@ -45,6 +45,13 @@ dhcp-host={{ host.mac }},{{ host.ip  }}{% if host.name is defined %},{{ host.nam
 {% endfor %}
 
 {% endif %}
+
+{% if dnsmasq_dhcp_class_tags is defined %}
+{% for tag in dnsmasq_dhcp_class_tags %}
+dhcp-userclass=tag:{{ tag.tag }},{{ tag.user_class }}
+{% endfor %}
+{% endif %}
+
 {% if dnsmasq_option_router is defined %}
 dhcp-option=option:router,{{ dnsmasq_option_router }}
 {% endif %}

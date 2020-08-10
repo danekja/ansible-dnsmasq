@@ -22,6 +22,7 @@ None of the variables below are required.
 | `dnsmasq_bogus_priv`       | `true`  | When `true`, Dnsmasq will not forward addresses in the non-routed address spaces.                                                                         |
 | `dnsmasq_dhcp_hosts`       | -       | Array of hashes specifying IP address reservations for hosts, with keys `name` (optional), `mac` and `ip` for each reservation. See below.             |
 | `dnsmasq_dhcp_ranges`      | -       | Array of hashes specifying DHCP ranges (with keys `start_addr`, `end_addr`, and `lease_time`) for each address pool. This also enables DHCP. See below. |
+| `dnsmasq_dhcp_class_tags`  | -       | Array specifying tags for DHCP requests based on userclass string (with keys `user_class` and `tag`). See below. |
 | `dnsmasq_domain_needed`    | `true`  | When `true`, local requests (i.e. without domain name) are not forwarded.                                                                                 |
 | `dnsmasq_domain`           | -       | The domain for Dnsmasq.                                                                                                                                   |
 | `dnsmasq_expand_hosts`     | `false` | Set this (and `dnsmasq_domain`) if you want to have a domain automatically added to simple names in a hosts-file.                                         |
@@ -78,6 +79,14 @@ IP address reservations based on MAC addres can be specified with `dnsmasq_dhcp_
       - name: 'bravo'
         mac: 'aa:bb:cc:dd:ee:ff'
         ip: '192.168.6.11'
+```
+
+Assign tags to DHCP requests based on the user-class string provided by the client.
+
+```Yaml
+    dnsmasq_dhcp_class_tags:
+      - user_class: "iPXE"
+        tag: "red"
 ```
 
 ## Dependencies
