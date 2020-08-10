@@ -45,6 +45,13 @@ dhcp-host={{ host.mac }},{{ host.ip  }}{% if host.name is defined %},{{ host.nam
 {% endfor %}
 
 {% endif %}
+
+{% if dnsmasq_dhcp_boots is defined %}
+{% for boot in dnsmasq_dhcp_boots %}
+dhcp-boot={% if boot.tag is defined %}tag:{{ boot.tag }},{% endif %}{{ boot.filename }}{% if boot.server_name is defined %},{{ boot.server_name }}{% if boot.server_address is defined %},{{ boot.server_address }}{% elif boot.tftp_name is defined %},{{ boot.tftp_name }}{% endif %}{% endif %}
+{% endfor %}
+{% endif %}
+
 {% if dnsmasq_option_router is defined %}
 dhcp-option=option:router,{{ dnsmasq_option_router }}
 {% endif %}
