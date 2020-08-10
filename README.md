@@ -22,7 +22,7 @@ None of the variables below are required.
 | `dnsmasq_bogus_priv`       | `true`  | When `true`, Dnsmasq will not forward addresses in the non-routed address spaces.                                                                         |
 | `dnsmasq_dhcp_hosts`       | -       | Array of hashes specifying IP address reservations for hosts, with keys `name` (optional), `mac` and `ip` for each reservation. See below.             |
 | `dnsmasq_dhcp_ranges`      | -       | Array of hashes specifying DHCP ranges (with keys `start_addr`, `end_addr`, and `lease_time`) for each address pool. This also enables DHCP. See below. |
-| `dnsmasq_dhcp_boots`       | -       | Array of records specifying BOOTP options returned by the DHCP server (with keys `tag`, `server_name`, `server_address` and `tftp_name`). See below. |
+| `dnsmasq_dhcp_boots`       | -       | Array of records specifying BOOTP options returned by the DHCP server (with keys `tag` (optional), `filename`, `server_name` (optional), `server_address` (optional) and `tftp_name` (optional). See below. |
 | `dnsmasq_domain_needed`    | `true`  | When `true`, local requests (i.e. without domain name) are not forwarded.                                                                                 |
 | `dnsmasq_domain`           | -       | The domain for Dnsmasq.                                                                                                                                   |
 | `dnsmasq_expand_hosts`     | `false` | Set this (and `dnsmasq_domain`) if you want to have a domain automatically added to simple names in a hosts-file.                                         |
